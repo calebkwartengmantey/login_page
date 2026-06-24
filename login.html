@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Log In — HostelHub GCTU</title>
+  <link rel="stylesheet" href="auth.css" />
+</head>
+<body>
+
+  <div class="auth-wrapper">
+
+    <!-- Left — Campus visual -->
+    <div class="auth-visual">
+      <div class="auth-visual-content">
+        <div class="auth-visual-logo">Hostel<span>Hub</span></div>
+        <h2>Welcome back</h2>
+        <p>Log in to view your bookings, save favourite hostels, and reserve your room before it's gone.</p>
+      </div>
+    </div>
+
+    <!-- Right — Login form -->
+    <div class="auth-form-panel">
+      <div class="auth-form-box">
+        <h1>Log in to your account</h1>
+        <p class="subtitle">Enter your details to continue</p>
+
+        <div class="form-banner error" id="form-banner"></div>
+
+        <form id="login-form" novalidate>
+
+          <div class="form-group" id="group-email">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" />
+            <span class="field-error">Please enter a valid email</span>
+          </div>
+
+          <div class="form-group" id="group-password">
+            <label for="password">Password</label>
+            <div class="password-field">
+              <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" />
+              <button type="button" class="password-toggle" data-target="password" aria-label="Show password">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <span class="field-error">Please enter your password</span>
+          </div>
+
+          <button type="submit" class="btn-primary" id="submit-btn">Log In</button>
+
+        </form>
+
+        <p class="auth-switch">Don't have an account? <a href="register.html">Create one</a></p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="auth.js"></script>
+</body>
+</html>

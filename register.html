@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Account — HostelHub GCTU</title>
+  <link rel="stylesheet" href="auth.css" />
+</head>
+<body>
+
+  <div class="auth-wrapper">
+
+    <!-- Left — Campus visual -->
+    <div class="auth-visual">
+      <div class="auth-visual-content">
+        <div class="auth-visual-logo">Hostel<span>Hub</span></div>
+        <h2>Find your home near GCTU campus</h2>
+        <p>Join hundreds of students who book verified, affordable hostels online — no stress, no scams, no long queues.</p>
+      </div>
+    </div>
+
+    <!-- Right — Register form -->
+    <div class="auth-form-panel">
+      <div class="auth-form-box">
+        <h1>Create your account</h1>
+        <p class="subtitle">Sign up to start booking hostels near GCTU</p>
+
+        <div class="form-banner error" id="form-banner"></div>
+
+        <form id="register-form" novalidate>
+
+          <div class="form-group" id="group-username">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="e.g. kwame_asante" autocomplete="username" />
+            <span class="field-error">Please enter a username</span>
+          </div>
+
+          <div class="form-group" id="group-email">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" />
+            <span class="field-error">Please enter a valid email</span>
+          </div>
+
+          <div class="form-group" id="group-password">
+            <label for="password">Password</label>
+            <div class="password-field">
+              <input type="password" id="password" name="password" placeholder="At least 6 characters" autocomplete="new-password" />
+              <button type="button" class="password-toggle" data-target="password" aria-label="Show password">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <span class="field-error">Password must be at least 6 characters</span>
+          </div>
+
+          <div class="form-group" id="group-confirm">
+            <label for="confirm-password">Confirm Password</label>
+            <div class="password-field">
+              <input type="password" id="confirm-password" name="confirmPassword" placeholder="Re-enter your password" autocomplete="new-password" />
+              <button type="button" class="password-toggle" data-target="confirm-password" aria-label="Show password">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <span class="field-error">Passwords do not match</span>
+          </div>
+
+          <button type="submit" class="btn-primary" id="submit-btn">Create Account</button>
+
+        </form>
+
+        <p class="auth-switch">Already have an account? <a href="login.html">Log in</a></p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="auth.js"></script>
+</body>
+</html>

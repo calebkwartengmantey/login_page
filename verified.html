@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Email Verified — HostelHub GCTU</title>
+  <link rel="stylesheet" href="auth.css" />
+</head>
+<body>
+
+  <div class="auth-wrapper">
+
+    <!-- Left — Campus visual -->
+    <div class="auth-visual">
+      <div class="auth-visual-content">
+        <div class="auth-visual-logo">Hostel<span>Hub</span></div>
+        <h2>You're all set</h2>
+        <p>Your account is active. Log in to start browsing hostels near GCTU campus.</p>
+      </div>
+    </div>
+
+    <!-- Right — Result panel -->
+    <div class="auth-form-panel">
+      <div class="auth-form-box" id="result-box">
+        <!-- Filled in by JS depending on verification result -->
+        <div class="verify-pending">
+          <div class="verify-icon">⏳</div>
+          <h1>Verifying your email...</h1>
+          <p class="subtitle">Please wait a moment.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const API_BASE = 'http://localhost:3000/api';
+
+    async function verifyEmail() {
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get('token');
+      const box = document.getElementById('result-box');
+
+      if (!token) {
+        box.innerHTML = `
+          <div class="verify-pending">
+            <div class="verify-icon">⚠️</div>
+            <h1>Invalid link</h1>
+            <p class="subtitle">No verification token was found in this link.</p>
+            <a href="register.html" class="auth-switch-link">Back to register</a>
+          </div>`;
+        return;
+      }
+
+      try {
+        const res = await fetch(`${API_BASE}/auth/verify?token=${encodeURIComponent(token)}`);
+        const data = await res.json();
+
+        if (!res.ok) {
+          box.innerHTML = `
+            <div class="verify-pending">
+              <div class="verify-icon">⚠️</div>
+              <h1>Verification failed</h1>
+              <p class="subtitle">${data.message || 'This link may be invalid or expired.'}</p>
+              <a href="register.html" class="auth-switch-link">Back to register</a>
+            </div>`;
+          return;
+        }
+
+        box.innerHTML = `
+          <div class="verify-pending">
+            <div class="verify-icon">✅</div>
+            <h1>Email verified!</h1>
+            <p class="subtitle">Your account is now active. You can log in.</p>
+            <a href="login.html" class="auth-switch-link">Go to login</a>
+          </div>`;
+
+      } catch (err) {
+        console.error(err);
+        box.innerHTML = `
+          <div class="verify-pending">
+            <div class="verify-icon">⚠️</div>
+            <h1>Couldn't reach the server</h1>
+            <p class="subtitle">Is the backend running? Try refreshing this page.</p>
+            <a href="register.html" class="auth-switch-link">Back to register</a>
+          </div>`;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', verifyEmail);
+  </script>
+
+</body>
+</html>
